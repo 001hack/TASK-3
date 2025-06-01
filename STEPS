@@ -1,0 +1,131 @@
+### 🛠️ Step 1: Install & Set Up OpenVAS (10–15 mins)
+
+**Run these commands in your terminal:**
+
+```bash
+sudo apt update && sudo apt install openvas -y
+sudo gvm-setup
+sudo gvm-check-setup
+```
+
+💡 **Note**: First-time setup will download the vulnerability database. It can take up to 10 mins.
+
+Then, start the services:
+
+```bash
+sudo gvm-start
+```
+
+➡️ Once started, open your browser and go to:
+
+```
+https://127.0.0.1:9392 (ITS GET UPDATED )
+```
+
+Login using default credentials:
+
+* **Username**: `admin`
+* **Password**: (shown in terminal after `gvm-setup`)
+
+---
+
+### 🖥️ Step 2: Configure a Scan (5–10 mins)
+
+1. Log into the **GVM (OpenVAS)** web UI.
+2. Go to **Scans > Tasks** → Click **"New Task"**.
+3. Name: `Localhost Vulnerability Scan`
+4. **Target**: Click **“Create Target”**:
+
+   * Name: `Localhost`
+   * Hosts: `127.0.0.1`
+   * Port list: All IANA assigned TCP
+   * Save
+5. Use default scan config or choose **"Full and fast"**.
+6. Click **Create** and **Start** the scan.
+
+---
+
+### ⏳ Step 3: Wait for Scan to Complete (30–45 mins)
+
+Take a break while OpenVAS scans your system. It will analyze:
+
+* Open ports
+* OS vulnerabilities
+* Web services (if any)
+* Outdated software
+
+---
+
+### 📊 Step 4: Review Report (5–10 mins)
+
+Once scan is complete:
+
+* Go to **Scans > Reports**
+* Click your report to open
+* Sort vulnerabilities by **Severity (High/Critical)**
+
+---
+
+### 📸 Step 5: Take Screenshots (5 mins)
+
+✅ Screenshot examples:
+
+1. Dashboard showing scan completed
+2. List of vulnerabilities (sorted by severity)
+3. Details of 1–2 critical vulnerabilities
+
+---
+
+## 📝 Final Report Template (Fill as You Go)
+
+---
+
+### 🔒 Vulnerability Scan Report – Kali Linux
+
+**Tool Used**: OpenVAS (GVM)
+**Date of Scan**: June 1, 2025
+**Scan Target**: 127.0.0.1 (Localhost)
+
+---
+
+### 🚨 Top 3 Critical/High Vulnerabilities
+
+#### 1. **SSL/TLS Weak Cipher Suites**
+
+* **Severity**: High
+* **Description**: SSL/TLS configuration supports weak ciphers.
+* **Fix**: Edit `/etc/ssl/openssl.cnf` to disable weak ciphers.
+
+#### 2. **OpenSSH Outdated Version**
+
+* **Severity**: High
+* **Description**: SSH service is running an older version vulnerable to CVEs.
+* **Fix**: Run `sudo apt update && sudo apt upgrade openssh-server`
+
+#### 3. **Apache HTTP Server Directory Listing Enabled**
+
+* **Severity**: Medium
+* **Description**: Web server may expose directories publicly.
+* **Fix**: Edit Apache config: `Options -Indexes`
+
+---
+
+### ✅ Recommendations
+
+* Regularly update Kali using:
+
+  ```bash
+  sudo apt update && sudo apt full-upgrade -y
+  ```
+* Disable unused services via `systemctl`.
+* Harden SSH settings in `/etc/ssh/sshd_config`.
+
+---
+
+### 📸 Screenshots Attached
+
+* Scan Dashboard
+* Vulnerability List
+* Detailed View of 1–2 Issues
+
+---
